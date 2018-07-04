@@ -1,0 +1,12 @@
+[ignore]
+
+[include]
+
+[libs]
+./custom-definitions/
+
+[lints]
+
+[options]
+
+[strict]

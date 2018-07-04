@@ -1,0 +1,40 @@
+{
+  "name": "node-jwt-auth",
+  "version": "1.0.1",
+  "description": "",
+  "main": "dist",
+  "scripts": {
+    "build": "babel lib -d dist",
+    "flow": "flow",
+    "flow-typed": "flow-typed",
+    "eslint": "eslint .",
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jsonwebtoken": "^8.3.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^8.2.5",
+    "babel-jest": "^23.2.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-flow": "^6.23.0",
+    "babel-preset-stage-0": "^6.24.1",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^13.0.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-flowtype": "^2.49.3",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-jest": "^21.17.0",
+    "eslint-plugin-prettier": "^2.6.1",
+    "flow-bin": "^0.75.0",
+    "flow-typed": "^2.4.0",
+    "jest": "^23.2.0",
+    "nodemon": "^1.17.5",
+    "prettier": "^1.13.7",
+    "supertest": "^3.1.0"
+  }
+}
