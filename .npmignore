@@ -1,7 +1,5 @@
-# Ignore everything
-*
-
-# But not these files...
-!dist
-!package.json
-!readme.md
+__tests__
+flow-typed
+src
+.*
+jest.config.js

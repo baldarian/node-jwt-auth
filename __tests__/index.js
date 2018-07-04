@@ -11,10 +11,11 @@ const testUser = {
 const config = {
   accessSecret: 'some_access_secret',
   refreshSecret: 'some_refresh_secret',
-  mapPayloadToUser: payload => ({
-    ...payload,
-    ...testUser
-  }),
+  mapPayloadToUser: payload =>
+    Promise.resolve({
+      ...payload,
+      ...testUser
+    }),
   mapUserToPayload: user => ({ user: { id: user.id } }),
   mapUserToHashed: user => user.password
 };
@@ -54,7 +55,7 @@ describe('node-jwt-auth', () => {
 
     it('should reject if user is not found with given payload', () => {
       const { auth, accessToken } = setup({
-        mapPayloadToUser: () => Promise.resolve(null)
+        mapPayloadToUser: () => Promise.reject()
       });
 
       expect(auth.verifyAccessToken(accessToken)).rejects.toThrow();
@@ -78,7 +79,7 @@ describe('node-jwt-auth', () => {
 
     it('should successfully return a new access token', async () => {
       const { auth, refreshToken } = setup();
-      const newToken = await typeof auth.refreshAccessToken(refreshToken);
+      const newToken = await auth.refreshAccessToken(refreshToken);
 
       expect(typeof newToken).toBe('string');
     });

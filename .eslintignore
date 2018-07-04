@@ -1,4 +1,4 @@
 node_modules
 flow-typed
 custom-definitions
-dist
+lib
