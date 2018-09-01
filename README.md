@@ -22,16 +22,16 @@ This module represents a single class which is exported as default.
 import 'Auth' from 'node-jwt-auth';
 ```
 
-### Auth(config)
+### new Auth(config)
 We need to use this class to initialize an auth object using which we can authenticate users.
 
-`options`:
+`config`:
 
-* `accessSecret`: string which is used to sign/verify access tokens
-* `refreshSecret`:  string which is used to sign/verify refresh tokens
-* `mapUserToPayload`: function which receives the user as an argument and returns a payload which then can be signed as token
-* `mapUserToHashed`: function which receives the user as an argument and returns password
-* `mapPayloadToUser`: function
+* `accessSecret`: string that will be used to sign/verify access tokens
+* `refreshSecret`:  string that will be used to sign/verify refresh tokens
+* `mapUserToPayload`: function which receives the user as an argument and returns a payload which then will be signed as  a token
+* `mapUserToHashed`: function which receives the user as an argument and returns password to tie it with the refresh token
+* `mapPayloadToUser`: async function that takes the payload as an argument and returns the actual user
 
 ```js
 
@@ -60,3 +60,15 @@ const auth = new Auth({
 });
 
 ```
+
+### auth.generateAccessToken(user)
+Takes a user as an argument and returns the access token
+
+### auth.generateRefreshToken(user)
+Takes a user as an argument and returns the refresh token
+
+### auth.verifyAccessToken(accessToken)
+Takes access token as an argument and checks whether it has been expired or not. Returns payload if has not been expired yet, otherwise throws an error
+
+### auth.refreshAccessToken(refreshToken)
+Takes refresh token as an argument and returns new access token. This also checks whether the password has been ever changed since the time when the refresh token is generated. If so, refresh token won't pass the verification process and this function will throw an error.
