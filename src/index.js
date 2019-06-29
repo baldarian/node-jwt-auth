@@ -89,14 +89,10 @@ class Auth {
   };
 
   verifyAccessToken = async (accessToken: string): Promise<Payload> => {
-    const { accessSecret, mapPayloadToUser } = this.config;
+    const { accessSecret } = this.config;
 
     try {
-      const payload = jwt.verify(accessToken, accessSecret);
-
-      await mapPayloadToUser(payload);
-
-      return payload;
+      return jwt.verify(accessToken, accessSecret);
     } catch (e) {
       throw new Error('Access token is invalid');
     }
